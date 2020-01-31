@@ -1,0 +1,129 @@
+1. Conectar a la Base de Datos - conectar_bd.php
+
+2. registro.php
+
+3. validarUsuario.php
+
+4. recuperarPassword.php
+
+5. cerrarSesion.php
+
+6. principal.php
+
+7. cliente.php
+
+	if (isset($_POST["agregar"])){
+				$nac = $_POST['nac'];
+				$cedula = $_POST['cedula'];
+				$nombre = $_POST['nombre'];
+				$apellido = $_POST['apellido'];
+				$direccion = $_POST['direccion'];
+				$cod1 = $_POST['cod1'];
+				$telf1 = $_POST['telf1'];
+				$cod2 = $_POST['cod2'];
+				$telf2 = $_POST['telf2'];
+				$cod3 = $_POST['cod3'];
+				$telf3 = $_POST['telf3'];
+				$email = $_POST['email'];
+				$observaciones = $_POST['observaciones'];
+
+						$msgNac="";
+						$claseNac="";
+						$msgNombre="";
+						$claseNombre="";
+						$msgDireccion="";
+						$claseDireccion="";
+						$msgEmail="";
+						$claseEmail="";
+						$msgTelefonos="";
+						$claseTelefonos="";
+						
+							if($nac=="" OR $cedula==""){
+								$msgNac= "Falta Nacionalidad o Rif o Cédula ";
+								$claseNac = "error";
+							}
+
+							if($nombre=="" OR $apellido==""){
+								$msgNombre= "Falta Nombre o el Apellido";
+								$claseNombre = "error";
+							}
+
+							if($direccion=="" ){
+								$msgDireccion= "Falta la Dirección";
+								$claseDireccion = "error";
+							}
+							
+							if($cod1=="" OR $telf1==""){
+								$msgTelefonos= "Falta Teléfonos";
+								$claseTelefonos = "error";
+							}
+							
+							if($_POST){
+						
+								if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+				
+								}else{				
+									$msgEmail = "Correo no cumple con el formato";
+									$claseEmail = "error";
+									$email = "";
+								}
+							}	
+			
+		if ($_POST["nac"]=="" OR $_POST["cedula"]=="" OR $_POST["nombre"]=="" OR $_POST["apellido"]=="" OR $_POST["direccion"]=="" OR $_POST["cod1"]=="" OR $_POST["telf1"]=="" OR $_POST["email"]==""){
+				echo "<script>alert('Faltan Datos del Cliente.....')</script>";
+		}else{
+			//echo "<script>alert('Datos.....')</script>";
+			
+			$validar = 1;
+		} 
+		
+		if ($validar == 1){
+			$sql2="select * from cliente where cedula='$_REQUEST[cedula]'";
+			$busqueda2=mysqli_query($con,$sql2);
+				if ($registro2=mysqli_fetch_array($busqueda2)){
+					echo "<script>alert('Datos del Cliente Ya Existe')</script>";
+				}else{
+					mysqli_query($con,"insert into cliente(nac,cedula,nombre,apellido,direccion,cod1,telf1,cod2,telf2,cod3,telf3,email,observaciones) values ('$_REQUEST[nac]','$_REQUEST[cedula]','$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[direccion]','$_REQUEST[cod1]','$_REQUEST[telf1]','$_REQUEST[cod2]','$_REQUEST[telf2]','$_REQUEST[cod3]','$_REQUEST[telf3]','$_REQUEST[email]','$_REQUEST[observaciones]')") or die("Problemas en el select".mysqli_error($con));
+					mysqli_close($con);
+					echo "<script>alert('Datos del Cliente fueron Agregados Correctamente')</script>";
+				}
+		}	
+		
+	}
+	
+		if (isset($_POST["buscar"])){	
+		$sql="select * from cliente where cedula='$_REQUEST[cedula]'";
+		$busqueda=mysqli_query($con,$sql);
+			if($registro=mysqli_fetch_array($busqueda)){
+				$nac = $registro['nac'];
+				$cedula = $registro['cedula'];
+				$nombre = $registro['nombre'];
+				$apellido = $registro['apellido'];
+				$direccion = $registro['direccion'];
+				$cod1 = $registro['cod1'];
+				$telf1 = $registro['telf1'];
+				$cod2 = $registro['cod2'];
+				$telf2 = $registro['telf2'];
+				$cod3 = $registro['cod3'];
+				$telf3 = $registro['telf3'];
+				$email = $registro['email'];
+				$observaciones = $registro['observaciones'];
+
+			}	else{
+					echo "<script>alert('NO EXISTE el Cliente Registrado')</script>";
+				}
+	}
+
+	if (isset($_POST["modificar"]))
+	{		
+		if ($_POST["nac"]=="" OR $_POST["cedula"]=="" OR $_POST["nombre"]=="" OR $_POST["apellido"]=="" OR $_POST["direccion"]=="" OR $_POST["cod1"]=="" OR $_POST["telf1"]=="" OR $_POST["email"]==""){
+				echo "<script>alert('Para Poder Modificar debe primero Buscar un Cliente.....')</script>";
+		}else{
+				$registros=mysqli_query($con,"update cliente set nac='$_REQUEST[nac]',nombre='$_REQUEST[nombre]',nombre='$_REQUEST[apellido]',direccion='$_REQUEST[direccion]',cod1='$_REQUEST[cod1]',cod2='$_REQUEST[cod2]',cod3='$_REQUEST[cod3]',telf1='$_REQUEST[telf1]',telf2='$_REQUEST[telf2]',telf3='$_REQUEST[telf3]',email='$_REQUEST[email]',observaciones='$_REQUEST[observaciones]' WHERE cedula='$_REQUEST[cedula]' ") or die("Problemas en el select:".mysqli_error($con));
+				echo "<script>alert('Datos del Cliente fueron Modificados Correctamente')</script>";
+				mysqli_close($con);
+
+		} 
+	}
+	
+8. cliente2.php

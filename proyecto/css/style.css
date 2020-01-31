@@ -1,0 +1,136 @@
+body {
+	background:#e6e6e6;
+}
+ 
+header {
+	width:90%;
+	max-width:1000px;
+	margin:auto;
+}
+ 
+nav {
+	background:#528fd5;
+	margin-top:20px;
+	position: relative;
+}
+ 
+nav ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+	overflow:hidden;
+}
+ 
+nav > ul > li {
+	float:left;
+}
+ 
+nav ul li a {
+	text-decoration:none;
+	color:#fff;
+	display:block;
+	padding:10px 20px;
+}
+nav ul li a:hover {
+	background:#3669a3;
+}
+ 
+nav > ul > li:hover div {
+	display:table;
+}
+ 
+/*Submenu*/
+nav ul li div {
+	width:1000px;
+	position: absolute;
+	left:0;
+	background:#ccc;
+	box-sizing:border-box;
+	display:none;
+}
+ 
+nav ul li div ul{
+	width:20%;
+	display:table-cell;
+	border-right:1px solid rgba(255,255,255,.5);
+	box-sizing:border-box;
+}
+ 
+nav ul li div ul:last-child {
+	border:none;
+}
+nav ul li div ul .titulo {
+	background:#000;
+	color:#fff;
+}
+ 
+nav ul li div ul .titulo a {
+	color:#fff;
+	padding:10px 20px;
+}
+ 
+.titulo.azul {background:#3498db;}
+.titulo.verde{background:#27ae60;}
+.titulo.naranja {background:#e67e22;}
+.titulo.rojo {background:#c0392b; color:#000;}
+ 
+nav ul li div ul .titulo a:hover {
+	background:none;
+}
+ 
+nav ul li div ul li a {
+	color:#000;
+}
+ 
+nav ul li div ul li a:hover {
+	color:#fff;
+}
+
+
+
+
+{
+            margin: 0;
+            padding: 0;
+        }
+        html,body {
+            height:100%;
+        }
+        /* Div que engloba el contenido de la página menos el footer */
+        #wrapper {
+            min-height:100%;
+        }
+        header {
+            display:block;
+            background:#ccc;
+            padding:10px 0px;
+        }
+        section {
+            overflow: auto;
+            /* Definimos el padding inferior:
+               50px del pie de pagina mas 10px de separacion
+            */
+            padding-bottom: 60px;
+            /* Definimos un padding superior */
+            padding-top:30px;
+        }
+footer {
+            position: relative;
+            /* Altura total del footer en px con valor negativo */
+            margin-top: -50px;
+            /* Altura del footer en px. Se han restado los 5px del margen
+               superior mas los 5px del margen inferior
+            */
+            height: 40px;
+            padding:5px 0px;
+            clear: both;
+            background: #286af0;
+            text-align: center;
+            color: #fff;
+        }
+
+		.define {
+            width:960px;
+            margin:0 auto;
+        }
+    </style>
